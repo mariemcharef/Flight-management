@@ -5,11 +5,11 @@
 package Person;
 
 import java.util.Scanner;
-public class Account {
+public class Account implements VerifLogin{
     public int id;
     public String password;
-    public Status status;
-    public Role role;
+    private Status status;
+    private Role role;
 
     public Account(int id, String password, Status status, Role role) {
         this.id = id;
@@ -46,7 +46,11 @@ public class Account {
     public void setStatus(Status status) throws Exception{
         this.status = status;
     }
-    
+    @Override
+    public boolean VerifLogin(int Id, String pass,Role r) {
+        
+        return pass.equals(password) && Id==id && r==role;
+    }
    public void resetPassword() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter new password: ");
@@ -60,4 +64,7 @@ public class Account {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+   
+    
 }

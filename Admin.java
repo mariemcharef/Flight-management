@@ -8,11 +8,8 @@ import static Person.Role.Admin;
 import static Person.Status.ACTIVE;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
-/**
- *
- * @author MARIEM
- */
 public final class Admin extends Person{
 
     public Admin(int id, String nom, String address, String mail, int phoneNumber) {
@@ -38,11 +35,17 @@ public final class Admin extends Person{
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    public boolean VerifLogin(int id, String password) {//est ce que id w password sont valides
+       
+        return this.account.VerifLogin(id,password,Admin);
+    }
+
 
     public void setAccount() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter identify number: ");
             int Id = scanner.nextInt();
+            scanner.nextLine();
             System.out.print("Enter password: ");
             String password = scanner.nextLine();
             Status status=Status.ACTIVE;
@@ -50,11 +53,10 @@ public final class Admin extends Person{
             Account a=new Account(Id,password,status,role);
             this.account=a;
             System.out.println("Account created successfully with ID: " + id);
+            
         }catch (InputMismatchException e) {
         System.out.println("Invalid input. Please enter a valid number for the ID.");
-        } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
-        }
+        } 
     }
     
     

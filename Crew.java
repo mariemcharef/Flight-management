@@ -4,6 +4,7 @@
  */
 package Person;
 
+import static Person.Role.Crew;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -60,7 +61,9 @@ public final class Crew extends Person{
     public Account getAccount() {
         return account;
     }
-
+    public boolean VerifLogin(int id, String password) {//est ce que id w password sont valides
+        return this.account.VerifLogin(id,password,Crew);
+    }
     
     public void setAccount() {
         try (Scanner scanner = new Scanner(System.in)) {

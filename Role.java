@@ -4,10 +4,8 @@
  */
 package Person;
 
-
-public enum  Status {
-    ACTIVE,
-    INACTIVE,
-    SUSPENDED,
-    CLOSED
+public enum  Role {
+    Admin,
+    Crew,
+    Pilote
 }
